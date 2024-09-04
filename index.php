@@ -1,6 +1,5 @@
 <?php
-    session_start();
-    $_SESSION["type"] = "benevole";
+   
     // demarrage de session
     // include require etc ...
     // verifier si on a reçu les données
@@ -18,7 +17,7 @@
 
             if(isset($_GET["toto"]))
             {
-                $page = $_SESSION["type"] . "/" . $_GET["toto"] . ".php";
+                $page = $_GET["toto"] . ".php";
                 if(file_exists($page) == FALSE)
                     $page = "body.php";
 
