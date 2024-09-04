@@ -27,7 +27,14 @@
 
         // METHODES
 
-        
+        public function lancerCuisson()
+        {
+            // PRECHAUFFER LE FOUR
+            // Prend le moule
+            // mettre dans le four
+            // activer le timer et fermer
+
+        }
 
 
     }

@@ -20,7 +20,7 @@
                 $page = $_GET["toto"] . ".php";
                 if(file_exists($page) == FALSE)
                     $page = "body.php";
-
+ 
             }
             else
             {
@@ -29,7 +29,7 @@
             include($page);
             
             include("footer.php");
-
+            echo "test";
         ?>
         
         
