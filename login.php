@@ -1,4 +1,6 @@
 <?php
+// INITIER SESSION
+session_start();
 
 //Connexion bdd
 $dsn = 'mysql:host=localhost;dbname=rattrapage';
@@ -14,9 +16,11 @@ if (isset($_POST["login"], $_POST["pwd"]))
     $tabvaleur = array($_POST["login"], $_POST["pwd"]);
     $Sth = $Bdd->prepare("SELECT * FROM users WHERE login = ? AND pwd = ? ");
     $Sth->execute($tabvaleur);
-    if ($usr = $Sth->fetch())
+    if ($Usr = $Sth->fetch())
     {
-        echo "USER OK de type : " . $usr->type;
+       // CONNEXION
+       $_SESSION["uid"] = $Usr->id;
+       $_SESSION["usrType"] = $Usr->type;
     }
     else
     {
@@ -27,7 +31,7 @@ if (isset($_POST["login"], $_POST["pwd"]))
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -38,6 +42,19 @@ if (isset($_POST["login"], $_POST["pwd"]))
         <input type="text" name="login"/>
         <input type="password" name="pwd"/>
         <button>Se connecter</button>
+
+        <?php
+
+            if(isset($_SESSION["uid"],$_SESSION["usrType"]))
+            {
+                var_dump($_SESSION);
+                session_destroy();
+            }
+            else
+            {
+                echo "pas d'user connecté";
+            }
+        ?>
     </form>
 </body>
 </html>
